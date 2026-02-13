@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>For You</title>
+  <link rel="stylesheet" href="css.css">
+</head>
+<body>
+  
+  <img src="catheart.png" class="main-heart">
+
+<div id="text"></div>
+
+<div id="buttons">
+  <img id="startBtn" src="start.png">
+  <img id="resetBtn" src="reset.png">
+</div>
+
+<div class="hearts left">
+  <div class="heart"><img src="heart.png"></div>
+  <div class="heart"><img src="heart.png"></div>
+  <div class="heart"><img src="heart.png"></div>
+  <div class="heart"><img src="heart.png"></div>
+</div>
+
+<div class="hearts right">
+  <div class="heart"><img src="heart.png"></div>
+  <div class="heart"><img src="heart.png"></div>
+  <div class="heart"><img src="heart.png"></div>
+  <div class="heart"><img src="heart.png"></div>
+</div>
+
+ <script>
+let message = `
+A pity she does not exist, a shame he's not a fag
+The only girl I ever loved was Andrew in drag
+There is no hope of love for me, from here on I go stag
+The only girl I'll ever love is Andrew in drag
+
+Andrew in drag, Andrew in drag
+Andrew in drag, yeah!
+
+I don't know why I even went, it's really not my bag
+Just thought it might be funny to see Andrew in drag
+The moment he walked on that stage my tail began to wag
+Wag like a little wiener dog for Andrew in drag
+
+Andrew in drag, Andrew in drag
+Andrew in drag, yeah!
+
+I've always been a ladies man and I don't have to brag
+But I've become a mama's boy for Andrew in drag
+I'd sign away my trust fund, I would even sell the Jag
+If I could spend my misspent youth with Andrew in drag
+
+Andrew in drag, Andrew in drag
+Andrew in drag, yeah!
+
+So stick him in a dress and he's the only boy I'd shag
+The only boy I'd anything is Andrew in drag
+I'll never see that girl again, he did it as a gag
+I'll pine away forevermore for Andrew in drag
+`;
+
+let i = 0;
+let typingTimeout;
+const textEl = document.getElementById("text");
+const startBtn = document.getElementById("startBtn");
+const resetBtn = document.getElementById("resetBtn");
+
+function updateButtonsPosition() {
+  const h = textEl.offsetHeight;
+  document.documentElement.style.setProperty('--text-height', h + 'px');
+}
+
+function typeText() {
+  if (i < message.length) {
+    textEl.textContent += message.charAt(i);
+    i++;
+    updateButtonsPosition();
+    typingTimeout = setTimeout(typeText, 70);
+  }
+}
+
+startBtn.addEventListener("click", () => {
+  if (i === 0) typeText();
+});
+
+resetBtn.addEventListener("click", () => {
+  clearTimeout(typingTimeout);
+  textEl.textContent = "";
+  i = 0;
+  updateButtonsPosition();
+});
+
+updateButtonsPosition();
+</script>
+  
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>For You</title>
+  <link rel="stylesheet" href="css.css">
+</head>
+<body>
+  
+  <img src="catheart.png" class="main-heart">
+
+<div id="text"></div>
+
+<div id="buttons">
+  <img id="startBtn" src="start.png">
+  <img id="resetBtn" src="reset.png">
+</div>
+
+<div class="hearts left">
+  <div class="heart"><img src="heart.png"></div>
+  <div class="heart"><img src="heart.png"></div>
+  <div class="heart"><img src="heart.png"></div>
+  <div class="heart"><img src="heart.png"></div>
+</div>
+
+<div class="hearts right">
+  <div class="heart"><img src="heart.png"></div>
+  <div class="heart"><img src="heart.png"></div>
+  <div class="heart"><img src="heart.png"></div>
+  <div class="heart"><img src="heart.png"></div>
+</div>
+
+ <script>
+let message = `
+Hi Danddie, 
+`;
+
+let i = 0;
+let typingTimeout;
+const textEl = document.getElementById("text");
+const startBtn = document.getElementById("startBtn");
+const resetBtn = document.getElementById("resetBtn");
+
+function updateButtonsPosition() {
+  const h = textEl.offsetHeight;
+  document.documentElement.style.setProperty('--text-height', h + 'px');
+}
+
+function typeText() {
+  if (i < message.length) {
+    textEl.textContent += message.charAt(i);
+    i++;
+    updateButtonsPosition();
+    typingTimeout = setTimeout(typeText, 70);
+  }
+}
+
+startBtn.addEventListener("click", () => {
+  if (i === 0) typeText();
+});
+
+resetBtn.addEventListener("click", () => {
+  clearTimeout(typingTimeout);
+  textEl.textContent = "";
+  i = 0;
+  updateButtonsPosition();
+});
+
+updateButtonsPosition();
+</script>
+  
+</body>
+</html>

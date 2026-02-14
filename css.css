@@ -1,4 +1,4 @@
-  html, body {
+html, body {
   margin: 0;
   width: 100%;
   height: 100%;
@@ -7,7 +7,6 @@
   overscroll-behavior: none;
 }
 
-
 body {
   position: relative;
   background: linear-gradient(to bottom, #FFF0F5, #FFB6C1);
@@ -15,7 +14,7 @@ body {
 }
 
 .main-heart {
-  width: 300px;
+  width: min(300px, 80vw);
   position: absolute;
   top: 80px;
   left: 50%;
@@ -34,13 +33,13 @@ body {
   top: 320px;
   left: 50%;
   transform: translateX(-50%);
-  width: 350px;
+  width: min(350px, 90vw);
   padding: 15px 20px;
   background: #FFF5EE;
   border-radius: 12px;
   text-align: center;
   color: #E37383;
-  font-size: 18px;
+  font-size: clamp(14px, 5vw, 18px);
   white-space: pre-line;
   box-shadow: 0 0 10px rgba(255,255,255,0.1);
   overflow: visible;
@@ -53,10 +52,12 @@ body {
   transform: translateX(-50%);
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 #buttons img {
-  width: 150px;
+  width: clamp(100px, 35vw, 150px);
   cursor: pointer;
   transition: transform 0.2s, filter 0.1s;
   outline: none;
@@ -119,5 +120,3 @@ body {
 .heart:nth-child(2){ animation-delay:2.5s; }
 .heart:nth-child(3){ animation-delay:3.5s; }
 .heart:nth-child(4){ animation-delay:4.5s; }
-
-
